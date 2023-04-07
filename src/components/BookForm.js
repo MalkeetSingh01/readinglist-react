@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { BookContext } from "../contexts/BookContextProvider";
 
 const BookForm = () => {
-    const {addBook}=useContext(BookContext);
+    // const {addBook}=useContext(BookContext);
+    const {dispatch}=useContext(BookContext);
 
     const [data,setData]=useState({})
     const handle=(e)=>{
@@ -10,7 +11,13 @@ const BookForm = () => {
     }
     const submitForm=(e)=>{
         e.preventDefault();
-        if(data.title!==" ")addBook(data);
+        if(data.title!==" "){
+            // addBook(data);
+            dispatch({type:'ADD_BOOK',book:{
+                title:data.title,
+                author:data.author
+            }})
+        }
         setData({title:"",author:""});
     }
     return ( 

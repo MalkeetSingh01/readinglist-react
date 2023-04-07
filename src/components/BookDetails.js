@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { BookContext } from "../contexts/BookContextProvider";
 
 const BookDetails = ({book}) => {
-    const {removeBook}=useContext(BookContext);
+    // const {removeBook}=useContext(BookContext);
+    const {dispatch}=useContext(BookContext);
     const style={
         color:"white",
         listStyle: 'none',
@@ -10,7 +11,8 @@ const BookDetails = ({book}) => {
         margin: '2px',
     }
     return ( 
-       <li onClick={()=>removeBook(book.id)} className="book" style={style}>
+    //    <li onClick={()=>removeBook(book.id)} className="book" style={style}>
+    <li onClick={()=>dispatch({type:'REMOVE_BOOK',id:book.id})} className="book" style={style}>
          <div className="title">{book.title}</div>
         <div className="author">{book.author}</div>
        </li>
